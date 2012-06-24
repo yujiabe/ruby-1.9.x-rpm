@@ -1,6 +1,6 @@
 # What is this spec?
 
-This spec is an attempt to push for a stable replacement of Ruby 1.8.x with 1.9.2+ on RHEL based systems. I have based it off of the work of [FrameOS](http://www.frameos.org) specs for Ruby 1.9.2 and Ruby Enterprise Edition.
+This spec is an attempt to push for a stable replacement of Ruby 1.8.x with 1.9.2+ on RHEL based systems.
 
 ### How to install
 
@@ -9,24 +9,33 @@ This spec is an attempt to push for a stable replacement of Ruby 1.8.x with 1.9.
     yum install -y rpm-build rpmdevtools readline-devel ncurses-devel gdbm-devel tcl-devel openssl-devel db4-devel byacc
     rpmdev-setuptree
     cd ~/rpmbuild/SOURCES
-    wget http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.2-p320.tar.gz
+    wget http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p194.tar.gz
+    wget http://ruby-doc.org/downloads/ruby_1_9_3_core_rdocs.tgz
+    wget http://doc.okkez.net/archives/201107/ruby-refm-1.9.2-dynamic-20110729.tar.gz
+    wget http://ftp.ruby-lang.org/pub/ruby/doc/rubyfaq-990927.tar.gz
+    wget http://ftp.ruby-lang.org/pub/ruby/doc/rubyfaq-jp-990927.tar.gz
     cd ~/rpmbuild/SPECS
-    wget https://raw.github.com/imeyer/ruby-1.9.2-rpm/master/ruby19.spec
+    wget https://raw.github.com/imeyer/ruby-1.9.x-rpm/master/ruby19.spec
     rpmbuild -bb ruby19.spec
-    rpm -Uvh ~/rpmbuild/RPMS/x86_64/ruby-1.9.2p320-1.ruby-1.9.2p320-1.i386.rpm
+    rpm -Uvh ~/rpmbuild/RPMS/x86_64/ruby19-1.9.3p194-1.x86_64.rpm
 
 **PROFIT!**
 
 ### What it does
 
 + Builds
++ Split packages into ruby-libs, ruby-devel, etc
 + Installs
 + Overwrites/upgrades your currently installed ruby package (**DANGEROUS**)
 
 ### What it does **not** do
 
-+ Split packages into ruby-libs, ruby-devel, etc (looking for help here)
 + Install alongside Ruby 1.8.x
+
+### TODO
+
++ Generates reference manual from ruby-refm-*-dynamic archive with bitclust
++ Rearrange package structure (to co-exist with Ruby 1.8.x packages)
 
 ### Requirements
 
@@ -34,14 +43,13 @@ This spec is an attempt to push for a stable replacement of Ruby 1.8.x with 1.9.
 
 ### Distro support
 
-Tested working (as sane as I could test for) on:
+Tested working (as same as I could test for) on:
+
+* CentOS 5.x x86_64
+
+Not tested on:
 
 * RHEL 5.x x86_64
 * RHEL 6.x x86_64
 * RHEL 6.x i686
-* CentOS 5.x x86_64
 * Scientific Linux 6.x x86_64
-
-### Personal thoughts
-
-This is by no means, correct, or sane. Nor does it follow any sort of policy for packaging. I leave that to the people who are most familiar with such things, and will willingly accept patches that add those features.
