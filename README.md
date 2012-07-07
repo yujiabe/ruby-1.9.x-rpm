@@ -8,6 +8,8 @@ This spec is an attempt to push for a stable replacement of Ruby 1.8.x with 1.9.
 
     yum install -y rpm-build rpmdevtools readline-devel ncurses-devel gdbm-devel tcl-devel openssl-devel db4-devel byacc
     rpmdev-setuptree
+    yumdownloader --source ruby
+    rpm -ivh ruby-1.8.5-*.src.rpm
     cd ~/rpmbuild/SOURCES
     wget http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p194.tar.gz
     wget http://ruby-doc.org/downloads/ruby_1_9_3_core_rdocs.tgz
@@ -15,9 +17,9 @@ This spec is an attempt to push for a stable replacement of Ruby 1.8.x with 1.9.
     wget http://ftp.ruby-lang.org/pub/ruby/doc/rubyfaq-990927.tar.gz
     wget http://ftp.ruby-lang.org/pub/ruby/doc/rubyfaq-jp-990927.tar.gz
     cd ~/rpmbuild/SPECS
-    wget https://raw.github.com/imeyer/ruby-1.9.x-rpm/master/ruby19.spec
+    wget https://raw.github.com/yujiabe/ruby-1.9.x-rpm/master/ruby19.spec
     rpmbuild -bb ruby19.spec
-    rpm -Uvh ~/rpmbuild/RPMS/x86_64/ruby19-1.9.3p194-1.x86_64.rpm
+    rpm -Uvh ~/rpmbuild/RPMS/x86_64/ruby19-1.9.3p194-1.x86_64.rpm ~/rpmbuild/RPMS/x86_64/ruby19-libs-1.9.3p194-1.x86_64.rpm ...
 
 **PROFIT!**
 
